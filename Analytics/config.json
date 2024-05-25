@@ -1,0 +1,8 @@
+{
+    "broker_address": "localhost",
+    "data_topic": "sensor/data",
+    "anomaly_topic": "anomaly_detection"
+    
+}
+
+
