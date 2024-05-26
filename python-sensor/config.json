@@ -1,6 +1,6 @@
 {
     "MONGO_URI": "mongodb+srv://ficadojc24:FxF1zEmMYOH1k0kn@iot.j1mzxpy.mongodb.net/",
-    "BROKER_ADDRESS": "localhost",
+    "BROKER_ADDRESS": "my-mqtt-broker", 
     "BROKER_PORT": 1883,
     "DB_NAME": "SolarPower",
     "COLLECTION_NAME": "SolarData",

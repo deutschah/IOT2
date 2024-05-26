@@ -1,5 +1,5 @@
 {
-    "broker_address": "localhost",
+    "broker_address": "my-mqtt-broker",
     "data_topic": "sensor/data",
     "anomaly_topic": "anomaly_detection"
     

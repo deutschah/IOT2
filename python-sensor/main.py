@@ -6,19 +6,16 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 import paho.mqtt.client as mqtt
 
-# Load configuration from file
 def load_config(file_path='config.json'):
     with open(file_path, 'r') as file:
         config = json.load(file)
     return config
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 
 def connect_to_mongodb(mongo_uri):
     try:
         client = MongoClient(mongo_uri)
-        #logging.info("Connected to MongoDB.")
         return client
     except PyMongoError as e:
         logging.error(f"Error connecting to MongoDB: {e}")
@@ -28,7 +25,6 @@ def connect_to_mqtt_broker(broker_address, broker_port):
     try:
         mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         mqtt_client.connect(broker_address, broker_port, 60)
-        #logging.info("Connected to MQTT broker.")
         return mqtt_client
     except ConnectionRefusedError as e:
         logging.error(f"Error connecting to MQTT broker: {e}")
