@@ -15,7 +15,8 @@
     "@types/express": "^4.17.21",
     "@types/mqtt": "^2.5.0",
     "express": "^4.19.2",
-    "mqtt": "^5.6.1"
+    "mqtt": "^5.6.1",
+    "queue": "^7.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",

@@ -54,7 +54,8 @@ def publish_sensor_data(config):
                 last_id = item['_id']
                 item['_id'] = str(item['_id'])  
                 json_data = json.dumps(item)
-                mqtt_client.publish(config['TOPIC'], json_data)
+                #mqtt_client.publish(config['TOPIC'], json_data)
+                mqtt_client.publish("sensor/data", json_data)
                 logging.info(f"Published sensor data to topic: {config['TOPIC']}")
             else:
                 logging.info("No new data found in the collection.")
