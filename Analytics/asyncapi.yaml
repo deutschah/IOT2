@@ -1,0 +1,64 @@
+asyncapi: '2.0.0'
+info:
+  title: Analytics Microservice
+  version: '1.0.0'
+  description: A microservice that analyzes sensor data for anomalies and publishes the results to an MQTT broker.
+servers:
+  mqttBroker:
+    url: mqtt://localhost:1883
+    protocol: mqtt
+    description: The MQTT broker for publishing and subscribing to sensor data.
+channels:
+  sensor/data:
+    subscribe:
+      summary: Subscribes to sensor data messages.
+      operationId: subscribeToSensorData
+      message:
+        $ref: '#/components/messages/SensorData'
+
+  sensor/anomaly/+/+:
+    publish:
+      summary: Publishes detected anomalies to specific anomaly topics.
+      operationId: publishAnomalyDetection
+      message:
+        $ref: '#/components/messages/SensorData'
+
+  sensor/last:
+    publish:
+      summary: Publishes the last sensor data received.
+      operationId: publishLastSensorData
+      message:
+        $ref: '#/components/messages/SensorData'
+
+components:
+  messages:
+    SensorData:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          _id:
+            type: string
+            description: The unique identifier of the sensor data.
+          TOTAL_YIELD:
+            type: number
+            description: The total yield of the sensor.
+          DAILY_YIELD:
+            type: number
+            description: The daily yield of the sensor.
+          AC_POWER:
+            type: number
+            description: The AC power of the sensor.
+          DC_POWER:
+            type: number
+            description: The DC power of the sensor.
+          SOURCE_KEY:
+            type: string
+            description: The source key of the sensor.
+          PLANT_ID:
+            type: string
+            description: The plant ID of the sensor.
+          DATE_TIME:
+            type: string
+            format: date-time
+            description: The date and time of the sensor data.

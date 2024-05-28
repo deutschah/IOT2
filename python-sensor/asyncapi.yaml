@@ -1,0 +1,77 @@
+asyncapi: '2.0.0'
+info:
+  title: Sensor Microservice
+  version: '1.0.0'
+  description: A microservice that publishes sensor data to an MQTT broker.
+servers:
+  mqttBroker:
+    url: mqtt://localhost:1883
+    protocol: mqtt
+    description: The MQTT broker for publishing sensor data.
+channels:
+  sensor/data:
+    publish:
+      summary: Publishes sensor data to the sensor/data topic.
+      operationId: publishSensorData
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            _id:
+              type: string
+              description: The unique identifier of the sensor data.
+            TOTAL_YIELD:
+              type: number
+              description: The total yield of the sensor.
+            DAILY_YIELD:
+              type: number
+              description: The daily yield of the sensor.
+            AC_POWER:
+              type: number
+              description: The AC power of the sensor.
+            DC_POWER:
+              type: number
+              description: The DC power of the sensor.
+            SOURCE_KEY:
+              type: string
+              description: The source key of the sensor.
+            PLANT_ID:
+              type: string
+              description: The plant ID of the sensor.
+            DATE_TIME:
+              type: string
+              format: date-time
+              description: The date and time of the sensor data.
+components:
+  messages:
+    SensorData:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          _id:
+            type: string
+            description: The unique identifier of the sensor data.
+          TOTAL_YIELD:
+            type: number
+            description: The total yield of the sensor.
+          DAILY_YIELD:
+            type: number
+            description: The daily yield of the sensor.
+          AC_POWER:
+            type: number
+            description: The AC power of the sensor.
+          DC_POWER:
+            type: number
+            description: The DC power of the sensor.
+          SOURCE_KEY:
+            type: string
+            description: The source key of the sensor.
+          PLANT_ID:
+            type: string
+            description: The plant ID of the sensor.
+          DATE_TIME:
+            type: string
+            format: date-time
+            description: The date and time of the sensor data.
