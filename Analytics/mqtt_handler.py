@@ -3,7 +3,7 @@ import logging
 import paho.mqtt.client as mqtt
 from anomaly_detection import detect_anomaly
 
-def on_message(client, userdata, msg):
+def on_message(client, userdata,msg):
     try:
         data = json.loads(msg.payload.decode())
         logging.info(f"Received data: {data}")

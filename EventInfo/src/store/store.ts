@@ -2,10 +2,10 @@ import { DataModel } from '../models/dataModel';
 
 export class Store {
     private static instance: Store;
-    private data: DataModel[];
+    private data: { [key: string]: DataModel[] };
 
     private constructor() {
-        this.data = [];
+        this.data = {};
     }
 
     public static getInstance(): Store {
@@ -16,17 +16,29 @@ export class Store {
     }
 
     public addData(data: DataModel): void {
-        this.data.push(data);
+        const plantId = data.PLANT_ID;
+        if (!this.data[plantId]) {
+            this.data[plantId] = [];
+        }
+        this.data[plantId].push(data);
     }
 
-    public getLastData(): DataModel | null {
-        if (this.data.length === 0) {
+    public getLastDataByPlantId(plantId: number): DataModel | null {
+        const dataForPlant = this.data[plantId];
+        if (!dataForPlant || dataForPlant.length === 0) {
             return null;
         }
-        return this.data[this.data.length - 1];
+        return dataForPlant[dataForPlant.length - 1];
     }
 
-    public getAllData(): DataModel[] {
-        return [...this.data];
+    public getDataByPlantId(plantId: string): DataModel[] | undefined {
+        return this.data[plantId];
+    }
+
+    public getAllData(): { [key: string]: DataModel[] } {
+        return { ...this.data };
     }
 }
+
+
+
