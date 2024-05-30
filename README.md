@@ -5,11 +5,11 @@ This project consists of three microservices designed to work together to simula
 ## Microservices
 
 ### 1. Python-sensor
-- **Description**: Simulates a sensor, triggering updates to a cloud MongoDB database every 5 seconds.
+- **Description**: Simulates a sensor. Retrieves one object from a cloud-based MongoDB database and publishes that object to an MQTT broker.
 - **Technology**: Python
 
 ### 2. Analytics
-- **Description**: Analyzes data from the MongoDB database and sends the results to the Node.js microservice via MQTT. 
+- **Description**: Listens to broker messages and analyzes data sent from the python-sensor microservice. The analyzed data is published back to the broker via two topics.
 - **Technology**: Python
 
 ### 3. EventInfo (Node.js)
@@ -49,7 +49,8 @@ This service automatically starts and provides a REST API to access the analyzed
 ## Endpoints
 
 - `GET /data`: Retrieves all analyzed data.
-- `GET /last`: Retrieves the latest analyzed data.
+- `GET /data/:plantId`: Retrieves analyzed data for a specific plant ID.
+- `GET /last/:plantId`: Retrieves the latest analyzed data for a specific plant ID.
  
 
 ## Stopping the Services
